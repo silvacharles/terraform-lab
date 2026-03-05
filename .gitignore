@@ -1,0 +1,65 @@
+# -----------------------------
+# Terraform
+# -----------------------------
+# Diretório de plugins e módulos baixados
+.terraform/
+
+# Arquivos de estado
+*.tfstate
+*.tfstate.*
+
+# Lock file (opcional manter no repo)
+# Se quiser versionar, remova esta linha
+.terraform.lock.hcl
+
+# Planos gerados
+*.tfplan
+*.tfplan.*
+
+# Arquivos de override
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Logs
+crash.log
+crash.*.log
+
+# Arquivos de variáveis sensíveis
+*.tfvars
+*.tfvars.json
+
+# Arquivos locais de configuração
+terraform.rc
+.terraformrc
+
+# -----------------------------
+# macOS
+# -----------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icone customizado
+Icon?
+
+# Thumbnails
+._*
+
+# Arquivos criados pelo Finder
+.Spotlight-V100
+.Trashes
+
+# -----------------------------
+# IDE / Editor
+# -----------------------------
+.vscode/
+.idea/
+
+# -----------------------------
+# Arquivos temporários
+# -----------------------------
+*.log
+*.tmp
+*.bak
