@@ -15,6 +15,7 @@
 # Planos gerados
 *.tfplan
 *.tfplan.*
+*.out
 
 # Arquivos de override
 override.tf
