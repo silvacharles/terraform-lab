@@ -34,6 +34,7 @@ crash.*.log
 # Arquivos locais de configuração
 terraform.rc
 .terraformrc
+aws-key*
 
 # -----------------------------
 # macOS
