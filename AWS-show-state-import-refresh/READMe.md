@@ -1,4 +1,4 @@
-# Comando utilizados
+# Comandos utilizados
 
 #### Mostra em formato JSON
 
@@ -23,3 +23,19 @@
 ### Remover um recurso
 
 <code>terraform state rm aws_s3_bucket.nome</code>
+
+### Importar recurso 
+
+<code>terraform import aws_s3_bucket.nomerecursobucket nomebucket </code>
+
+### Refresh para o terraform (obs: não altera o aquivo quando utiliza o comando plan)
+
+<code>terraform refresh</code>
+
+### Reinicia state do zero
+
+<code>terraform init -reconfigure</code>
+
+### Migra alterações do backend
+
+<code>terraform migrate-state</code>
