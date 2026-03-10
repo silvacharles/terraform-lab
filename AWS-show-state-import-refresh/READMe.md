@@ -39,3 +39,7 @@
 ### Migra alterações do backend
 
 <code>terraform migrate-state</code>
+
+### configuração backend
+
+<code>terraform init -backend-config=backend-dev.hcl -reconfigure</code>
