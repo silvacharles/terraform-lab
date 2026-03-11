@@ -43,3 +43,7 @@
 ### configuração backend
 
 <code>terraform init -backend-config=backend-dev.hcl -reconfigure</code>
+
+### Desbloquear state
+
+<code>terraform force-unlock Colocar_ID_gerada</code>
