@@ -7,7 +7,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "charlessilva-s3-remote"
+    bucket = "charlessilva-remote-state"
     key    = "moved-removed-import/terraform.tfstate"
     region = "sa-east-1"
   }
