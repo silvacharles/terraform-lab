@@ -1,0 +1,66 @@
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8083:80
+    networks:
+      - wordpress
+      - traefik
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: senhaaqui
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress:/var/www/html
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.wordpress.rule=Host(`www.rootsys.com.br`)
+      - traefik.http.routers.wordpress.entrypoints=websecure
+      - traefik.http.routers.wordpress.tls.certresolver=lets-encrypt
+      - traefik.docker.network=traefik  
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: senhaaqui
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - wordpress
+      - traefik   
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8084:80"
+    networks:
+      - wordpress
+      - traefik 
+    environment:
+      PMA_ARBITRARY: 1
+      
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.charlessilva.com.br`)
+      - traefik.http.routers.phpmyadmin.entrypoints=websecure
+      - traefik.http.routers.phpmyadmin.middlewares=simpleAuth@file
+      - traefik.http.routers.phpmyadmin.tls.certresolver=lets-encrypt
+      - traefik.docker.network=traefik  
+
+volumes:
+  wordpress:
+  db:
+
+networks:
+  wordpress:
+    external: false
+  traefik:
+    external: true
