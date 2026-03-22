@@ -3,7 +3,7 @@
 yum update -y
 
 # Instalar Docker
-amazon-linux-extras install docker -y
+yum install docker -y
 systemctl start docker
 systemctl enable docker
 
