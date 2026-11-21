@@ -1,0 +1,8 @@
+flowchart LR
+  TF[Terraform CLI] --> LOCAL[Terraform State<br/>local backend padrão]
+  TF --> AWS[AWS Provider<br/>us-east-1]
+  AWS --> S3[Amazon S3 Bucket<br/>charlessilva-terraform-local-state]
+  OUT[Outputs: bucket_id<br/>bucket_arn]
+  S3 --> OUT
+  NOTE[O código cria um bucket S3.<br/>Não declara backend S3; o state permanece local.]
+  LOCAL -.-> NOTE

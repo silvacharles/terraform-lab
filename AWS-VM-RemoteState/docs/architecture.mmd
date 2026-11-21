@@ -1,0 +1,12 @@
+flowchart TB
+  VPCSTATE[(S3 Remote State<br/>aws-vpc/terraform.tfstate)]
+  VMSTATE[(S3 Backend<br/>aws-vm/terraform.tfstate)]
+  TF[Terraform — projeto VM]
+  DATA[data.terraform_remote_state.vpc]
+  EC2[Amazon EC2<br/>t3.micro]
+  KEY[EC2 Key Pair<br/>aws-key]
+  VPCSTATE --> DATA
+  TF --> DATA
+  DATA -->|subnet_id + security_group_id| EC2
+  TF --> VMSTATE
+  TF --> KEY --> EC2

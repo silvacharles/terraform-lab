@@ -1,0 +1,16 @@
+flowchart TB
+  CW[AWS CloudWatch<br/>AWS/Billing EstimatedCharges]
+  A5[Alarm Warning<br/>> USD 5]
+  A10[Alarm Alert<br/>> USD 10]
+  A20[Alarm Critical<br/>> USD 20]
+  SNS[Amazon SNS Topic<br/>billing-alert-topic]
+  EMAIL[Email subscription<br/>var.email — confirmação necessária]
+  CW --> A5
+  CW --> A10
+  CW --> A20
+  A5 --> SNS
+  A10 --> SNS
+  A20 --> SNS
+  SNS --> EMAIL
+  NOTE[Região configurada no provider billing: sa-east-1]
+  SNS -.-> NOTE

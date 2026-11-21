@@ -1,0 +1,4 @@
+flowchart LR
+  TF[Terraform CLI] --> AWS[AWS Provider<br/>us-east-1]
+  AWS --> S3[Amazon S3 Bucket<br/>charlessilva-terraform-bucket]
+  S3 --> TAG[Tags<br/>Name: Terraform bucket<br/>Environment: Dev]

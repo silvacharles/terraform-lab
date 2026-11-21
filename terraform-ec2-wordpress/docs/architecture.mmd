@@ -1,0 +1,18 @@
+flowchart TB
+  USER[Usuário / Internet]
+  SG[EC2 Security Group<br/>HTTP 80 / HTTPS 443<br/>SSH 22 restrito ao CIDR configurado]
+  EC2[Amazon EC2 t3.small<br/>Amazon Linux 2 AMI]
+  DOCKER[Docker + Docker Compose<br/>instalados via user_data]
+  TRAEFIK[Traefik<br/>proxy reverso / TLS]
+  WP[WordPress container<br/>porta interna 80]
+  DB[MySQL 8.0 container]
+  PMA[phpMyAdmin container]
+  VOL[(Docker volumes<br/>wordpress / db)]
+  USER --> SG --> EC2 --> DOCKER --> TRAEFIK
+  TRAEFIK --> WP
+  TRAEFIK --> PMA
+  WP --> DB
+  WP --> VOL
+  DB --> VOL
+  NOTE[Compose referencia rede externa traefik.<br/>O script deve garantir que ela exista antes do compose up.]
+  TRAEFIK -.-> NOTE

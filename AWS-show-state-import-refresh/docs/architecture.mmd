@@ -1,0 +1,16 @@
+flowchart TB
+  TF[Terraform CLI]
+  BACKEND[(S3 Backend<br/>commands/terraform.tfstate)]
+  SHOW[show / state list]
+  CHANGE[state mv / state rm]
+  SYNC[state pull / state push]
+  IMPORT[terraform import]
+  REFRESH[refresh / plan -refresh-only]
+  INIT[init -reconfigure<br/>backend-config]
+  TF --> BACKEND
+  TF --> SHOW
+  TF --> CHANGE
+  TF --> SYNC
+  TF --> IMPORT
+  TF --> REFRESH
+  TF --> INIT

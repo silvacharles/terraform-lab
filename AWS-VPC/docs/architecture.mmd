@@ -1,0 +1,13 @@
+flowchart TB
+  INTERNET((Internet))
+  IGW[Internet Gateway]
+  RT[Route Table<br/>0.0.0.0/0 → IGW]
+  subgraph VPC["VPC 10.0.0.0/16"]
+    SUB[Subnet 10.0.1.0/24]
+    SG[Security Group<br/>Ingress TCP/22 from 0.0.0.0/0<br/>Egress all]
+  end
+  INTERNET --> IGW --> RT --> SUB
+  SG -. attached to VPC .- SUB
+  OUT[Terraform outputs<br/>subnet_id / security_group_id]
+  SUB --> OUT
+  SG --> OUT

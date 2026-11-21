@@ -1,0 +1,14 @@
+flowchart TB
+  CONFIG[Terraform configuration<br/>3 aws_s3_bucket resources]
+  STATE[(Terraform State<br/>S3 backend)]
+  PLAN[terraform plan]
+  MOVED[moved block<br/>renomeia endereço no state]
+  IMPORT[import block / terraform import<br/>associa recurso existente]
+  REMOVED[removed block<br/>retira do gerenciamento]
+  CONFIG --> PLAN
+  STATE --> PLAN
+  MOVED --> PLAN
+  IMPORT --> PLAN
+  REMOVED --> PLAN
+  NOTE[No momento, os arquivos .tf deste diretório<br/>não contêm blocos moved, removed ou import.<br/>O código atual apenas declara 3 buckets.]
+  PLAN -.-> NOTE

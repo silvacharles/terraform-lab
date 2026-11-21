@@ -1,0 +1,15 @@
+flowchart TB
+  TF[Terraform CLI / configuration]
+  AWS[AWS Provider<br/>us-east-1]
+  S3[Amazon S3 bucket<br/>charlessilva-remote-state]
+  VER[S3 Versioning<br/>Enabled]
+  AZ[AzureRM Provider]
+  RG[Azure Resource Group<br/>rg-terraform-state]
+  SA[Azure Storage Account<br/>charlesterraformstate]
+  BLOB[Private Blob Container<br/>remote-state]
+  TF --> AWS --> S3
+  S3 --> VER
+  TF --> AZ --> RG --> SA --> BLOB
+  NOTE[Both cloud storage resources are provisioned.<br/>No Terraform backend block is configured here.]
+  S3 -.-> NOTE
+  BLOB -.-> NOTE
